@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Detalhes do Aluno</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ aluno.nome }}</h5>
+            <p class="card-text"><strong>CPF:</strong> {{ aluno.cpf }}</p>
+            <p class="card-text"><strong>Email:</strong> {{ aluno.email }}</p>
+            <p class="card-text"><strong>Telefone:</strong> {{ aluno.telefone }}</p>
+            <a href="{% url 'aluno_list' %}" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div>
+    <h3 class="mt-4">Empréstimos</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Livro</th>
+                <th>Data de Empréstimo</th>
+                <th>Data de Devolução</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emprestimo in aluno.emprestimos.all %}
+            <tr>
+                <td>{{ emprestimo.livro.titulo }}</td>
+                <td>{{ emprestimo.data_emprestimo }}</td>
+                <td>{{ emprestimo.data_devolucao|default:'-' }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">Nenhum empréstimo registrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

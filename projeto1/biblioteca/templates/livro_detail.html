@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Detalhes do Livro</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ livro.titulo }}</h5>
+            <p class="card-text"><strong>ISBN:</strong> {{ livro.isbn }}</p>
+            <p class="card-text"><strong>Situação:</strong> {{ livro.situacao }}</p>
+            <p class="card-text"><strong>Autores:</strong>
+                {% for autor in livro.autores.all %}
+                    {{ autor.nome }}{% if not forloop.last %}, {% endif %}
+                {% empty %}
+                    Nenhum autor registrado.
+                {% endfor %}
+            </p>
+            <a href="{% url 'livro_list' %}" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div>
+    <h3 class="mt-4">Empréstimos</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Aluno</th>
+                <th>Data de Empréstimo</th>
+                <th>Data de Devolução</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emprestimo in livro.emprestimos.all %}
+            <tr>
+                <td>{{ emprestimo.aluno.nome }}</td>
+                <td>{{ emprestimo.data_emprestimo }}</td>
+                <td>{{ emprestimo.data_devolucao|default:'-' }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">Nenhum empréstimo registrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

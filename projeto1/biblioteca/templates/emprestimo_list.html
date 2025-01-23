@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Lista de Empréstimos</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Aluno</th>
+                <th>Livro</th>
+                <th>Data de Empréstimo</th>
+                <th>Data de Devolução</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emprestimo in emprestimos %}
+            <tr>
+                <td>{{ emprestimo.aluno.nome }}</td>
+                <td>{{ emprestimo.livro.titulo }}</td>
+                <td>{{ emprestimo.data_emprestimo }}</td>
+                <td>{{ emprestimo.data_devolucao|default:'-' }}</td>
+                <td>
+                    <a href="{% url 'emprestimo_update' emprestimo.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{% url 'emprestimo_delete' emprestimo.pk %}" class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'emprestimo_create' %}" class="btn btn-success mb-3">Adicionar Novo Empréstimo</a>
+</div>
+{% endblock %}

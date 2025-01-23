@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow p-4" style="width: 40rem;">
+        <h2 class="text-center mb-4">Cadastrar Aluno</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group mb-3">
+                <label for="id_nome" class="form-label">Nome Completo</label>
+                <input type="text" name="nome" id="id_nome" class="form-control" placeholder="Digite o nome completo" value="{{ form.nome.value|default:'' }}">
+            </div>
+            <div class="form-group mb-3">
+                <label for="id_cpf" class="form-label">CPF</label>
+                <input type="text" name="cpf" id="id_cpf" class="form-control" placeholder="Digite o CPF" value="{{ form.cpf.value|default:'' }}">
+            </div>
+            <div class="form-group mb-3">
+                <label for="id_email" class="form-label">E-mail</label>
+                <input type="email" name="email" id="id_email" class="form-control" placeholder="Digite o e-mail" value="{{ form.email.value|default:'' }}">
+            </div>
+            <div class="form-group mb-4">
+                <label for="id_telefone" class="form-label">Telefone</label>
+                <input type="text" name="telefone" id="id_telefone" class="form-control" placeholder="Digite o telefone" value="{{ form.telefone.value|default:'' }}">
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-success">Salvar</button>
+                <a href="{% url 'aluno_list' %}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

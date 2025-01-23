@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow p-4" style="width: 40rem;">
+        <h2 class="text-center mb-4">Atualizar Autor</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group mb-3">
+                <label for="id_nome" class="form-label">Nome</label>
+                <input type="text" name="nome" id="id_nome" class="form-control" placeholder="Digite o nome completo" value="{{ form.nome.value|default:'' }}">
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-success">Salvar</button>
+                <a href="{% url 'autor_list' %}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

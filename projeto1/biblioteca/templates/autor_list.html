@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Lista de Autores</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for autor in autores %}
+            <tr>
+                <td>{{ autor.nome }}</td>
+                <td>
+                    <a href="{% url 'autor_update' autor.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{% url 'autor_delete' autor.pk %}" class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'autor_create' %}" class="btn btn-success mb-3">Adicionar Novo Autor</a>
+</div>
+{% endblock %}

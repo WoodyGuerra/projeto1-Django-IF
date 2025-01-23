@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow p-4" style="width: 40rem;">
+        <h2 class="text-center mb-4">Atualizar Empréstimo</h2>
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-group mb-3">
+                <label for="id_aluno" class="form-label">Aluno</label>
+                <select name="aluno" id="id_aluno" class="form-control">
+                    <option value="">Selecione o aluno</option>
+                    {% for aluno in form.aluno.field.queryset %}
+                        <option value="{{ aluno.id }}" {% if aluno.id == form.aluno.value %}selected{% endif %}>
+                            {{ aluno.nome }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="id_livro" class="form-label">Livro</label>
+                <select name="livro" id="id_livro" class="form-control">
+                    <option value="">Selecione o livro</option>
+                    {% for livro in form.livro.field.queryset %}
+                        <option value="{{ livro.id }}" {% if livro.id == form.livro.value %}selected{% endif %}>
+                            {{ livro.titulo }} - ({{ livro.situacao }})
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="id_data_devolucao" class="form-label">Data de Devolução</label>
+                <input type="date" name="data_devolucao" id="id_data_devolucao" class="form-control" value="{{ form.data_devolucao.value|default:'' }}">
+            </div>
+
+             <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-success">Salvar</button>
+                <a href="{% url 'emprestimo_list' %}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

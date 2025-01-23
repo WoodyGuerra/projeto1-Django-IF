@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Lista de Alunos</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for aluno in alunos %}
+            <tr>
+                <td><a href="{% url 'aluno_detail' aluno.pk %}">{{ aluno.nome }}</td>
+                <td>{{ aluno.cpf }}</td>
+                <td>{{ aluno.email }}</td>
+                <td>{{ aluno.telefone }}</td>
+                <td>
+                    <a href="{% url 'aluno_update' aluno.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{% url 'aluno_delete' aluno.pk %}" class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'aluno_create' %}" class="btn btn-success">Adicionar Novo Aluno</a>
+</div>
+{% endblock %}

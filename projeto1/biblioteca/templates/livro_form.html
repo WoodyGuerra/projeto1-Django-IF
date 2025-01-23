@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow p-4" style="width: 40rem;">
+        <h2 class="text-center mb-4">Cadastrar Livro</h2>
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-group mb-3">
+                <label for="id_isbn" class="form-label">ISBN</label>
+                <input type="text" name="isbn" id="id_isbn" class="form-control" placeholder="Digite o ISBN" value="{{ form.isbn.value|default:'' }}">
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="id_titulo" class="form-label">Título</label>
+                <input type="text" name="titulo" id="id_titulo" class="form-control" placeholder="Digite o título do livro" value="{{ form.titulo.value|default:'' }}">
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="id_situacao" class="form-label">Situação</label>
+                <select name="situacao" id="id_situacao" class="form-control">
+                    <option value="Disponível" {% if form.situacao.value == "Disponível" %}selected{% endif %}>Disponível</option>
+                    <option value="Emprestado" {% if form.situacao.value == "Emprestado" %}selected{% endif %}>Emprestado</option>
+                </select>
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="id_autores" class="form-label">Autores</label>
+                <select name="autores" id="id_autores" class="form-control" multiple>
+                    {% for autor in form.autores.field.queryset %}
+                        <option value="{{ autor.id }}" 
+                            {% if autor.id in form.autores.value %}selected{% endif %}>
+                            {{ autor.nome }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <small class="form-text text-muted">Segure Ctrl (ou Cmd) para selecionar vários autores.</small>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-success">Salvar</button>
+                <a href="{% url 'livro_list' %}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
