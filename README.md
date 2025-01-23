@@ -6,13 +6,13 @@ Este repositório contém o **Projeto 1** do curso **FIC - Desenvolvimento Web c
 
 ## 📚 Sobre o Projeto
 
-O **projeto1-Django-IF** é uma aplicação web que simula uma **Biblioteca**. Ele foi desenvolvido para consolidar os conceitos aprendidos durante o curso e possui funcionalidades completas de gerenciamento de dados com autenticação de usuários.
+O **projeto1-Django-IF** é uma aplicação web que simula uma **Biblioteca**. Ele foi desenvolvido para consolidar os conceitos aprendidos durante o curso.
 
 ### 🚀 Funcionalidades
 
 - **Tela de Login**:
   - Usuários devem se autenticar para acessar a aplicação.
-  - Caso ainda não tenham conta, podem se cadastrar utilizando o link para a página de cadastro.
+  - Caso ainda não tenham conta, podem se cadastrar.
 
 - **Lista de Alunos**:
   - Página inicial após o login, contendo uma lista de todos os alunos cadastrados.
