@@ -14,7 +14,7 @@ O **projeto1-Django-IF** é uma aplicação web que simula uma **Biblioteca**. E
   - Usuários devem se autenticar para acessar a aplicação.
   - Caso ainda não tenham conta, podem se cadastrar.
 
-  ![Tela de Login](imagens/tela_login.png)
+  ![Tela de Login](imagens/tela_login.jpeg)
 
 - **Lista de Alunos**:
   - Página inicial após o login, contendo uma lista de todos os alunos cadastrados.
@@ -24,7 +24,7 @@ O **projeto1-Django-IF** é uma aplicação web que simula uma **Biblioteca**. E
     - **Excluir Aluno**: Remove permanentemente um aluno.
     - **Visualizar Detalhes do Aluno**: Exibe informações detalhadas sobre o aluno.
 
-  ![Tela de Alunos](imagens/tela_alunos.png)
+  ![Tela de Alunos](imagens/tela_alunos.jpeg)
 
 - **Outras Páginas**:
   - **Autores**:

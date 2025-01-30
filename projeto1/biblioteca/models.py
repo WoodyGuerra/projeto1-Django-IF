@@ -1,5 +1,7 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from datetime import date
+
     
 class Aluno(models.Model):
     nome = models.CharField(max_length=100)
@@ -57,11 +59,15 @@ class Emprestimo(models.Model):
 
         if emprestimo_existente:
             raise ValidationError('Livro já está emprestado.')
+        
+        if self.pk is None:
+            self.data_emprestimo = date.today()  # Define uma data de empréstimo padrão antes de salvar
 
-        if self.data_devolucao and self.data_devolucao < self.data_emprestimo:
+        if self.data_devolucao and self.data_emprestimo and self.data_devolucao < self.data_emprestimo:
             raise ValidationError('Data de devolução deve ser posterior à data de empréstimo.')
 
         super().clean()
+
 
     
     def save(self, *args, **kwargs):
